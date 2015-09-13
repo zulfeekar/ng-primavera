@@ -10,7 +10,7 @@
         console.log('App : Initializing');
 
         // Touch move prevent default. ( Iscroll);
-        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+        // document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 
 
         // Loading Configuration
