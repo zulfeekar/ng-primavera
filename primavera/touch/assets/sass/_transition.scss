@@ -1,0 +1,27 @@
+.slide.ng-enter,
+.slide.ng-leave {
+  @include transition(all 0.5s ease-in-out);
+}
+
+.slide {
+
+  &.ng-enter {
+    @include transform(translateY(100%));
+    @include opacity(0);
+  }
+
+  &.ng-enter-active {
+    @include transform(translateY(0%));
+    @include opacity(1);
+  }
+
+  &.ng-leave {
+    @include transform(translateY(0%));
+  }
+
+  &.ng-leave-active {
+    @include transform(translateY(-100%));
+    @include opacity(0);
+  }
+
+}

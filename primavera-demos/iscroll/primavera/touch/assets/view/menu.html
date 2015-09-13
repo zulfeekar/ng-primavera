@@ -1,0 +1,14 @@
+<div  id="scroller">
+    <div class="page menu">
+        <div class="heading">
+            <h2>Menu</h2>
+        </div>
+        <div class="body">
+            <nav id="menu-view">
+            <ul>
+                <li ng-repeat="menu in content"><a ng-href="{{menu.link}}" ng-title={{menu.title}}>{{menu.title}}</a></li>
+            </ul>
+            </nav>
+        </div>
+    </div>
+</div>

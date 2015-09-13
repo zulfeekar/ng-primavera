@@ -1,0 +1,12 @@
+.main-ui-view{
+  @include inline-block;
+  position: absolute;
+  top: 68px;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  z-index: 1;
+  overflow: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-y-scrolling: touch;
+}

@@ -1,0 +1,85 @@
+footer{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  .footer-content{
+    position: relative;
+    width: 100%;
+    ul{
+      width: 100%;
+      margin: 0;
+      padding: 0;
+
+      li{
+        @include inline-block;
+        vertical-align: top;
+        width: 25%;
+        height: 60px;
+        position: relative;
+        background-color: $fourth-color;
+       // @include box-shadow(inset -4px 0 18px rgba(0,0,0,.08));
+        border-right: 1px solid #e1e1e1;
+        border-top: 1px solid #e1e1e1;
+
+        a{
+          text-decoration: none;
+          position: absolute;
+          top: 0;
+          width: 100%;
+          line-height: 40px;
+          text-align: center;
+          height: 100%;
+
+        }
+        &.home,
+        &.people,
+        &.about,
+        &.company{
+
+          &:before{
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            @include inline-block;
+            background-image: url('../images/icons.svg');
+            background-repeat: no-repeat;
+            left: 50%;
+            margin-left: -12px;
+            top: 0;
+            margin-top: 18px;
+
+          }
+        }
+        &.home{
+
+        }
+        &.about{
+          &:before {
+
+            background-position: -42px 0px;
+          }
+        }
+        &.people{
+          &:before {
+
+            background-position: -84px 0px;
+          }
+        }
+        &.company{
+          &:before {
+
+            background-position: -125px 0px;
+          }
+        }
+
+        &:last-child{
+          border-right: none;
+        }
+      }
+    }
+  }
+
+}
