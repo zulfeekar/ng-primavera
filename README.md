@@ -7,12 +7,13 @@ Angular + Requirejs + Sass + Grunt - Starter kit for Mobile First Web Applicatio
 
 
 ## Getting Started
-
 To get you started you can simply clone the ng-primavera repository and install the dependencies:
 
 ### Prerequisites
-nodejs
-bower
+  Nodejs -
+  Bower -
+  Compass -
+  Grunt
 
 
 ## Install dependencies (vendor - js files)
@@ -24,7 +25,6 @@ bower update
 ```js
 cd primavera/touch/assets -> compass watch
 ```
-
 
 ## Install grunt-task dependencies (node modules)
 ```js
