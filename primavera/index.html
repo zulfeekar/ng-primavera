@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title ng-bind="$root.pageTitle ? 'PRIMAVERA / ' + $root.pageTitle : 'PRIMAVERA'"></title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+            <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700' rel='stylesheet' type='text/css'>
+        <link href="./assets/stylesheets/screen.css" type="text/css" rel="stylesheet">
+        <script src="./vendor/modernizr/modernizr.js" type="application/javascript"></script>
+        <base href="./">
+    </head>
+
+    <script>
+        (function(window){
+
+            if(!(window.console && console.log)) {
+                console = {
+                    log: function(){},
+                    debug: function(){},
+                    info: function(){},
+                    warn: function(){},
+                    error: function(){}
+                };
+            }
+
+        })(window);
+
+    </script>
+    <style type="text/css">
+        #ie8-content{
+            display: none;
+        }
+    </style>
+    <!--[if lte IE 8]>
+    <style type="text/css">
+        #ie8-content{
+            display: block;
+            text-align:center;
+        }
+        .will-hide-for-ie8{
+
+            display: none!important;
+        }
+    </style>
+    <![endif]-->
+
+    <body ng-controller="appController" app> <!-- Main Application Controller & App Directive -->
+
+        <div id="ie8-content">ie8 Content</div>
+
+        <header class="will-hide-for-ie8">
+            <img class="logo" src="assets/images/logo.png" alt="logo image">
+        </header>
+
+        <menu id="main-navigation" role="navigation" class="base-hide will-hide-for-ie8">
+            <nav class="desktop">
+                <ul class="page-navigation">
+                    <li ng-repeat="item in pageNavigationData" data-label="{{item.label}}" ng-click="onPageNavClick(item.label)" ng-bind-html="item.name"></li>
+                </ul>
+                <ul class="language-navigation">
+                    <li ng-repeat="item in languageNavigationData" repeat-item data-label="{{item.label}}" ng-click="onLanguageSwitch(item.label)" ng-bind-html="item.label"></li>
+                </ul>
+            </nav>
+        </menu>
+
+        <div id="main" role="main" class="will-hide-for-ie8">
+            <!-- ng-animate ui-view-->
+            <div ui-view class="main-ui-view">
+                <!-- -->
+                <!-- -->
+                <div class="page-splash"><!-- Splash page starts -->
+                    <div class="spinner">LOADING...</div>
+                </div><!-- Splash page ends -->
+                <!-- -->
+                <!-- -->
+            </div>
+        </div>
+        <footer class="will-hide-for-ie8"></footer>
+        <script data-main="./src/app" src="./vendor/requirejs/require.js"  type="text/javascript" ></script>
+    </body>
+</html>

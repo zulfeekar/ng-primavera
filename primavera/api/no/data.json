@@ -1,0 +1,25 @@
+{
+    "data":
+    {
+        "cacheFiles":[
+            "./assets/images/logo.png"
+            ,"./assets/images/image001.jpg"
+            ,"./assets/images/image002.jpg"
+        ]
+        ,"languages":[{"label":"it"},{"label":"en"},{"label":"no"}]
+        ,"mainmenu":
+        [
+            {"name":"home","label":"home"},
+            {"name":"vi","label":"about"}
+        ]
+        ,"pages":
+    {
+        "home":{"image":"./assets/images/image001.jpg"},
+        "about":{"image":"./assets/images/image002.jpg"}
+    },
+        "footer":
+        {
+
+        }
+    }
+}

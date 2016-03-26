@@ -1,0 +1,22 @@
+.page-splash{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  margin: auto auto;
+  background-color: $primary-color;
+  >div{
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    top: 50%;
+    left: 50%;
+    margin-left: -60px;
+    line-height: 11em;
+    text-align: center;
+    @include border-radius(60px);
+    background-color: $fourth-color;
+    color: $primary-color;
+  }
+}

@@ -6,9 +6,9 @@ module.exports = function(grunt) {
     var appName =  "primavera";
 
     var config = {
-        devDir      : "../"+appName+"/touch/",
-        vendorDir:"../"+appName+"/vendor/",
-        buildDir    : "../bin/"+appName+"/touch",
+        devDir      : '../'+appName+"/",
+        vendorDir   : '../'+appName+"/vendor/",
+        buildDir    : "../bin/"+appName,
         appName:appName
     };
 

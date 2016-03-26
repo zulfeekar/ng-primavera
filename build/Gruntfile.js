@@ -11,8 +11,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-htmlclean');
+    grunt.loadNpmTasks('grunt-dom-munger');
 
-    var _vendorPath = "../../vendor/";
+    var _vendorPath = "../vendor/";
 
 
     /**
@@ -84,6 +86,17 @@ module.exports = function(grunt) {
 
                 ]
             },
+            move_favicon: {
+                files: [
+                    {
+                        src: ['favicon.ico'],
+                        cwd: '<%= devDir %>/',
+                        dest: '<%= buildDir %>/',
+                        expand: true
+                    }
+
+                ]
+            },
             prod_app: {
                 files: [
                     {
@@ -97,7 +110,7 @@ module.exports = function(grunt) {
             build_vendorjs: {
                 files: [
                     {
-                        src: [ 'requirejs/require.js', 'modernizr/modernizr.js'],
+                        src: [ 'requirejs/require.js', 'modernizr/modernizr.js','fileserver/FileSaver.js'],
                         cwd: '<%=vendorDir%>',
                         dest: '../bin/<%=appName%>/vendor',
                         expand: true
@@ -167,11 +180,19 @@ module.exports = function(grunt) {
                     {
                         // Configure alias to full paths
                         "angular" : _vendorPath+'angular/angular',
-                        "ngAnimate" : _vendorPath+'angular-animate/angular-animate',
                         "uiRouter" : _vendorPath+'angular-ui-router/release/angular-ui-router',
+                        "ngSanitize" : _vendorPath+'angular-sanitize/angular-sanitize',
+                        "ngAnimate" : _vendorPath+'angular-animate/angular-animate',
+                        "jquery" : _vendorPath+'jquery/jquery.min',
+                        "tween":_vendorPath+'gsap/src/minified/TweenMax.min',
+                        /* "jquery.mCustomScrollbar":_vendorPath+"malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min",*/
+                        "iscroll":_vendorPath+'iscroll/build/iscroll',
                         "framework":"./framework",
                         "controller":"./framework/controller",
+                        "delegate":"./framework/delegate",
                         "model":"./framework/model"
+
+
                     },
 
                     urlArgs: 'v=1.0',
@@ -179,28 +200,62 @@ module.exports = function(grunt) {
                     shim    :
                     {
                         'angular': {
-
                             'exports': 'angular'
                         },
+                        'ngSanitize': {
+                            exports: 'ngSanitize',
+                            deps: ['angular']
+                        },
                         'ngAnimate': {
-
                             'deps': ['angular']
                         },
                         'uiRouter': {
-
                             'deps': ['angular']
+                        },
+                        'iscroll': {
+                            exports: 'Iscroll'
+                        },
+                        'tween':{
+                            'exports':'TweenMax'
+                        },
+                        'jquery':{
+                            'exports':'jquery'
                         }
+                        /*,'jquery.mCustomScrollbar':{
+                         'deps': ['jquery']
+                         }*/
                     },
 
                     /*
-                    *
-                    *
-                    * */
+                     *
+                     *
+                     * */
                     name: 'app',
                     out: '<%= buildDir %>/src/app.js'
                 },
                 preserveLicenseComments : true,
                 optimize: "uglify"
+            }
+        },
+        htmlclean: {
+            options: {
+                protect: /<\!--%fooTemplate\b.*?%-->/g,
+                edit: function(html) { return html.replace(/\begg(s?)\b/ig, 'omelet$1'); }
+            },
+            deploy: {
+                expand: true,
+                cwd: '<%= buildDir %>/',
+                src: '**/*.html',
+                dest: '<%= buildDir %>/'
+            }
+        },
+        dom_munger: {
+            dist: {
+                options: {
+                    update:[{selector:'html',attribute:'data-debug', value:"false"}]
+                },
+                src: '<%= buildDir %>/index.html', //could be an array of files
+                dest: '<%= buildDir %>/index.html' //optional, if not specified the src file will be overwritten
             }
         }
 
@@ -210,13 +265,17 @@ module.exports = function(grunt) {
 
         'clean:src',
         'copy:build_assets',
+        'copy:move_favicon',
         'copy:build_vendorjs',
         'copy:build_api',
         'copy:prod_app',
         'copy:index',
         "requirejs",
         "cssmin:minify",
-        "concat:source"
+        "concat:source",
+        "htmlclean:deploy",
+        'dom_munger:dist'
+
     ]);
 
 

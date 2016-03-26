@@ -1,0 +1,48 @@
+$primary-color:#cb4781;
+$secondary-color:#111111;
+$third-color:#808080;
+$fourth-color:#F0F0F0;
+
+*, *:before, *:after{
+  margin: 0;
+  padding: 0;
+  @include box-sizing(border-box);
+}
+
+html,
+body{
+
+  height: 100%;
+}
+
+html{
+  -ms-touch-action: none;
+}
+
+body{
+
+  font-size: 12px;
+  line-height:18px;
+  overflow: hidden;
+  font-family: 'PT Serif', serif;
+  font-weight: 400;
+
+  /* the-capsule copy 5: */
+  background-image: radial-gradient(50% 41%, #FFFFFF 36%, #D8D8D8 100%);
+
+}
+
+button{
+  outline: none;
+  @include appearance(none!important);
+  border: none;
+  cursor: pointer;
+}
+
+#main{
+  z-index: 0;
+}
+
+.base-hide{
+  display: none!important;
+}
